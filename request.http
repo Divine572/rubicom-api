@@ -1,22 +1,170 @@
 ### Signup a new User 
 
-POST http://localhost:3000/api/v1/users/signup
+POST http://localhost:5000/api/v1/users/signup
 Content-Type: application/json
+
 
 {
     "name": "John",
     "email": "John@gmail.com",
-    "password": "1234567",
-    "passwordConfirm": "1234567"
-
+    "password": "12345678",
+    "passwordConfirm": "12345678"
 }
 
 ### Signin a User 
 
-POST http://localhost:3000/api/v1/users/login
+POST http://localhost:5000/api/v1/users/login
 Content-Type: application/json
 
 {
     "email": "divine@gmail.com",
     "password": "1234567"
 }
+
+## Logout a user
+GET http://localhost:5000/api/v1/users/logout
+
+
+## Forget password route
+POST http://localhost:5000/api/v1/users/forgotPassword
+Content-Type: application/json
+
+{
+
+}
+
+## Reset password route
+PATCH http://localhost:5000/api/v1/users/resetPassword/:token
+Content-Type: application/json
+
+{
+
+}
+
+## Update password route (user should be authenticated)
+PATCH http://localhost:5000/api/v1/users/updateMyPassword
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Route for a user to get personal details (user should be authenticated)
+GET http://localhost:5000/api/v1/users/me
+Authorization: Bearer 
+
+## Route for a user to delete personal account (user should be authenticated)
+DELETE http://localhost:5000/api/v1/users/deleteMe
+Authorization: Bearer 
+
+
+## Get a single user (user should be authenticated) (Only accessible to admin)
+GET http://localhost:5000/api/v1/users/:id
+Authorization: Bearer 
+
+## Get all users (user should be authenticated) (Only accessible to admin)
+GET http://localhost:5000/api/v1/users
+Authorization: Bearer 
+
+## Update user data by user id (user should be authenticated) (Only accessible to admin)
+PATCH http://localhost:5000/api/v1/users/:id
+Authorization: Bearer 
+
+## Delete user data by user id (user should be authenticated) (Only accessible to admin)
+DELETE http://localhost:5000/api/v1/users/:id
+Authorization: Bearer 
+
+
+## Create post route (user should be authenticated) (Only accessible to admin)
+POST http://localhost:5000/api/v1/posts
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Update post route (user should be authenticated) (Only accessible to admin)
+PATCH http://localhost:5000/api/v1/posts
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+
+## Route to fetch all posts 
+GET http://localhost:5000/api/v1/posts
+
+
+## Route to get a single post by ID
+GET http://localhost:5000/api/v1/posts/:id
+
+
+## Route to delete a single post by id (user should be authenticated) (Only accessible to admin)
+DELETE http://localhost:5000/api/v1/posts/:id
+Authorization: Bearer 
+
+
+## Create commment route (user should be authenticated) (Only accessible to user)
+POST http://localhost:5000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Update comment by ID (user should be authenticated) (accessible to user and admin)
+PATCH http://localhost:5000/api/v1/comments
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Fetch comments data (user should be authenticated) 
+GET http://localhost:5000/api/v1/comments
+Authorization: Bearer 
+
+
+## Get comment by ID (user should be authenticated) 
+GET http://localhost:5000/api/v1/comments/:id
+Authorization: Bearer 
+
+
+## Delete comment by ID (user should be authenticated) (accessible to user and admin)
+DELETE http://localhost:5000/api/v1/comments/:id
+Authorization: Bearer 
+
+
+
+## Create job route (user should be authenticated) (Only accessible to admin)
+POST http://localhost:5000/api/v1/jobs
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Update job route (user should be authenticated) (Only accessible to admin) 
+PATCH http://localhost:5000/api/v1/jobs
+Content-Type: application/json
+Authorization: Bearer 
+
+{
+
+}
+
+## Get all posted jobs 
+GET http://localhost:5000/api/v1/jobs
+
+
+## Get a single job data by ID
+GET http://localhost:5000/api/v1/jobs/:id
+
+
