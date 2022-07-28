@@ -15,6 +15,9 @@ exports.createComment = catchAsync(async (req, res, next) => {
 });
 
 exports.getAllComments = catchAsync(async (req, res, next) => {
+  let filter = {};
+  if (req.params.postId) filter = { post: req.params.postId };
+
   const features = new APIFeatures(Comment.find(), req.query)
     .filter()
     .limitFields()
@@ -46,7 +49,7 @@ exports.getComment = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.updatePost = catchAsync(async (req, res, next) => {
+exports.updateComment = catchAsync(async (req, res, next) => {
   const comment = await Comment.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
     new: true,
@@ -64,7 +67,7 @@ exports.updatePost = catchAsync(async (req, res, next) => {
   });
 });
 
-exports.deletePost = catchAsync(async (req, res, next) => {
+exports.deleteComment = catchAsync(async (req, res, next) => {
   const comment = await Comment.findByIdAndDelete(req.params.id);
 
   if (!comment) {
