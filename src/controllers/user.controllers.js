@@ -18,12 +18,12 @@ exports.getAllUsers = catchAsync(async (req, res, next) => {
     .sort()
     .paginate();
 
-  const user = await features.query;
+  const users = await features.query;
   res.status(201).json({
     status: 'success',
-    result: user.length,
+    result: users.length,
     data: {
-      data: user,
+      data: users,
     },
   });
 });
