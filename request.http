@@ -5,8 +5,8 @@ Content-Type: application/json
 
 
 {
-    "name": "John",
-    "email": "John@gmail.com",
+    "name": "damian",
+    "email": "damian@gmail.com",
     "password": "12345678",
     "passwordConfirm": "12345678"
 }
@@ -14,11 +14,13 @@ Content-Type: application/json
 ### Signin a User 
 
 POST http://localhost:5000/api/v1/users/login
+
 Content-Type: application/json
 
+
 {
-    "email": "divine@gmail.com",
-    "password": "1234567"
+   "email": "divine@gmail.com",
+    "password": "12345678"
 }
 
 ## Logout a user
@@ -44,7 +46,7 @@ Content-Type: application/json
 ## Update password route (user should be authenticated)
 PATCH http://localhost:5000/api/v1/users/updateMyPassword
 Content-Type: application/json
-Authorization: Bearer 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyZTJkOWViMGNhMzY4MjQ1MjFiNDIxYiIsImlhdCI6MTY1OTAzNDA5MiwiZXhwIjoxNjU5NjM4ODkyfQ.gjuxgObGfp3gzhvfOCDdbN2sFMvxGpWeRLjA3OcZac4
 
 {
 
