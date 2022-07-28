@@ -2,6 +2,7 @@ const express = require('express');
 
 const authController = require('../controllers/auth.controllers');
 const postController = require('../controllers/post.controllers');
+const upload = require('../utils/multer.utils');
 
 const commentRouter = require('./comment.routes');
 
@@ -15,6 +16,7 @@ router
   .post(
     authController.protect,
     authController.restrictTo('admin'),
+    upload.single('imageCover'),
     postController.createPost
   );
 
