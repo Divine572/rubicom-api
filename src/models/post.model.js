@@ -12,8 +12,12 @@ const postSchema = new mongoose.Schema(
       type: String,
       required: [true, 'Please provide a body for your blog'],
     },
+    imageCover: {
+      type: String,
+      required: [true, 'Please provide a cover image for your blog'],
+    },
     user: {
-      type: mongoose.SchemaType.ObjectId,
+      type: mongoose.Schema.ObjectId,
       ref: 'User',
       required: [true, 'Post must belong to a user'],
     },

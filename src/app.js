@@ -2,7 +2,7 @@ const path = require('path');
 const cors = require('cors');
 const hpp = require('hpp');
 const xss = require('xss-clean');
-// const rateLimit = require('express-rate-limiter');
+const rateLimit = require('express-rate-limit');
 const express = require('express');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -10,6 +10,10 @@ const cookieParser = require('cookie-parser');
 const compression = require('compression');
 
 const userRouter = require('./routes/user.routes');
+const postRouter = require('./routes/post.routes');
+
+const globalErrorHandler = require('./controllers/error.controllers');
+const AppError = require('./utils/error.utils');
 
 const app = express();
 
@@ -23,12 +27,12 @@ if (process.env.NODE_ENV === 'development') {
 }
 
 // Limit requests from same IP
-// const limiter = rateLimit({
-//   max: 100,
-//   windowMs: 60 * 60 * 1000,
-//   message: 'Too many requests from this IP, Please try again in an hour!',
-// });
-// app.use('/api', limiter);
+const limiter = rateLimit({
+  max: 100,
+  windowMs: 60 * 60 * 1000,
+  message: 'Too many requests from this IP, Please try again in an hour!',
+});
+app.use('/api', limiter);
 
 app.use(cors());
 
@@ -47,5 +51,11 @@ app.use(hpp());
 app.use(compression());
 
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/posts', postRouter);
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.orginalUrl} on this server`, 404));
+});
+
+app.use(globalErrorHandler);
 
 module.exports = app;
