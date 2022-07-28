@@ -1,3 +1,3 @@
-# Osazie-store-api
+# Rubicom-api
 
-An ecommerce store Api with paystack payment integration for checkout process, Cart functionality, authentication and authorization, product endpoints,Category endpoints, Order or Inventory system
+A Logistic company website API with functionalities such as authentication and authorization, Job posting, blog posting, ability for users to comment under a blog
