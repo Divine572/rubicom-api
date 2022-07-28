@@ -12,6 +12,7 @@ const compression = require('compression');
 const userRouter = require('./routes/user.routes');
 const postRouter = require('./routes/post.routes');
 const commentRouter = require('./routes/comment.routes');
+const jobRouter = require('./routes/job.routes');
 
 const globalErrorHandler = require('./controllers/error.controllers');
 const AppError = require('./utils/error.utils');
@@ -54,6 +55,7 @@ app.use(compression());
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/posts', postRouter);
 app.use('/api/v1/comments', commentRouter);
+app.use('/api/v1/jobs', jobRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.orginalUrl} on this server`, 404));
 });
