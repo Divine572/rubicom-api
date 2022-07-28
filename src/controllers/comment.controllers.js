@@ -3,6 +3,12 @@ const AppError = require('../utils/error.utils');
 const catchAsync = require('../utils/catchAsync.utils');
 const APIFeatures = require('../utils/apiFeature.utils');
 
+exports.setPostUserIds = (req, res, next) => {
+  if (!req.body.post) req.body.post = req.params.postId;
+  if (!req.body.user) req.body.user = req.user.id;
+  next();
+};
+
 exports.createComment = catchAsync(async (req, res, next) => {
   const comment = await Comment.create(req.body);
 
