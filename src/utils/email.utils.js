@@ -7,17 +7,17 @@ module.exports = class Email {
     this.to = user.email;
     this.firstName = user.name.split(' ')[0];
     this.url = url;
-    this.from = `Divicodes ${process.env.EMAIL_FROM}`;
+    this.from = `Rubycom ${process.env.EMAIL_FROM}`;
   }
 
   newTransport() {
     if (process.env.NODE_ENV === 'production') {
       // sendgrid
       return nodemailer.createTransport({
-        service: 'SendGrid',
+        service: 'smtp.sendgrid.net',
         auth: {
-          user: process.env.SENDGRID_USERNAME,
-          pass: process.env.SENDGRID_PASSWORD,
+          user: 'apikey',
+          pass: process.env.SENDGRID_API_KEY,
         },
       });
     }
@@ -50,7 +50,7 @@ module.exports = class Email {
       to: this.to,
       subject,
       html,
-      text: htmlToText.fromString(html),
+      text: htmlToText.htmlToText(html),
     };
 
     // Create a transport and send email
