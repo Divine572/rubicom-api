@@ -2,16 +2,15 @@ const Post = require('../models/post.model');
 const AppError = require('../utils/error.utils');
 const catchAsync = require('../utils/catchAsync.utils');
 const APIFeatures = require('../utils/apiFeature.utils');
-const cloudinary = require('../utils/cloudinary.utils')
+const cloudinary = require('../utils/cloudinary.utils');
 
 exports.createPost = catchAsync(async (req, res, next) => {
-
   const result = await cloudinary.uploader.upload(req.file.path);
 
   const post = await Post.create({
     title: req.body.title,
     body: req.body.body,
-    imageCover: result.secure_url
+    imageCover: result.secure_url,
   });
 
   res.status(201).json({
@@ -21,6 +20,11 @@ exports.createPost = catchAsync(async (req, res, next) => {
     },
   });
 });
+
+exports.setUserId = (req, res, next) => {
+  if (!req.body.user) req.body.user = req.user.id;
+  next();
+};
 
 exports.getAllPosts = catchAsync(async (req, res, next) => {
   const features = new APIFeatures(Post.find(), req.query)

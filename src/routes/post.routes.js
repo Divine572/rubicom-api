@@ -17,6 +17,7 @@ router
     authController.protect,
     authController.restrictTo('admin'),
     upload.single('imageCover'),
+    postController.setUserId,
     postController.createPost
   );
 
