@@ -12,6 +12,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
     title: req.body.title,
     body: req.body.body,
     imageCover: req.file.path,
+    user: req.user.id,
   });
   console.log(post);
 

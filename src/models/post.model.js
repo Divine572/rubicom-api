@@ -19,7 +19,7 @@ const postSchema = new mongoose.Schema(
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      required: [true, 'Post must belong to a user'],
+      // required: [true, 'Post must belong to a user'],
     },
   },
   { timestamps: true },
