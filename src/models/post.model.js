@@ -14,11 +14,12 @@ const postSchema = new mongoose.Schema(
     },
     imageCover: {
       type: String,
+      required: [true, 'Please upload blog cover image'],
     },
     user: {
       type: mongoose.Schema.ObjectId,
       ref: 'User',
-      // required: [true, 'Post must belong to a user'],
+      required: [true, 'Post must belong to a user'],
     },
   },
   { timestamps: true },

@@ -3,7 +3,7 @@ const catchAsync = require('../utils/catchAsync.utils');
 const AppError = require('../utils/error.utils');
 const APIFeatures = require('../utils/apiFeature.utils');
 
-const filteredObj = (obj, ...allowedFields) => {
+exports.filteredObj = (obj, ...allowedFields) => {
   const newObj = {};
   Object.keys(obj).forEach(el => {
     if (allowedFields.includes(el)) newObj[el] = obj[el];

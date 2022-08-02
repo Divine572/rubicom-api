@@ -26,6 +26,7 @@ router
   .patch(
     authController.protect,
     authController.restrictTo('admin'),
+    postController.uploadPostImage,
     postController.updatePost
   )
   .delete(

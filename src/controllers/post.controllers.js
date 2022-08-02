@@ -3,6 +3,7 @@ const AppError = require('../utils/error.utils');
 const catchAsync = require('../utils/catchAsync.utils');
 const APIFeatures = require('../utils/apiFeature.utils');
 const { upload } = require('../utils/cloudinary.utils');
+const { filteredObj } = require('./user.controllers');
 
 exports.uploadPostImage = upload.single('imageCover');
 
@@ -11,9 +12,8 @@ exports.createPost = catchAsync(async (req, res, next) => {
     title: req.body.title,
     body: req.body.body,
     imageCover: req.file.path,
-    user: req.user.id,
   });
-  console.log(post.user);
+  console.log(post);
 
   res.status(201).json({
     status: 'success',
@@ -61,7 +61,9 @@ exports.getPost = catchAsync(async (req, res, next) => {
 });
 
 exports.updatePost = catchAsync(async (req, res, next) => {
-  const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
+  const filteredBody = filteredObj(req.body, 'title', 'body', 'imageCover');
+
+  const post = await Post.findByIdAndUpdate(req.params.id, filteredBody, {
     runValidators: true,
     new: true,
   });
