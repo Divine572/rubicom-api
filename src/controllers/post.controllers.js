@@ -14,7 +14,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
     imageCover: req.file.path,
     user: req.user.id,
   });
-  console.log(post);
+  // console.log(post);
 
   res.status(201).json({
     status: 'success',
