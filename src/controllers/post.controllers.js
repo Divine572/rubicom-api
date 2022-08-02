@@ -2,16 +2,18 @@ const Post = require('../models/post.model');
 const AppError = require('../utils/error.utils');
 const catchAsync = require('../utils/catchAsync.utils');
 const APIFeatures = require('../utils/apiFeature.utils');
-const cloudinary = require('../utils/cloudinary.utils');
+const { upload } = require('../utils/cloudinary.utils');
+
+exports.uploadPostImage = upload.single('imageCover');
 
 exports.createPost = catchAsync(async (req, res, next) => {
-  const result = await cloudinary.uploader.upload(req.file.path);
-
   const post = await Post.create({
     title: req.body.title,
     body: req.body.body,
-    imageCover: result.secure_url,
+    imageCover: req.file.path,
+    user: req.user.id,
   });
+  console.log(post.user);
 
   res.status(201).json({
     status: 'success',
