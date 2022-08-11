@@ -11,6 +11,7 @@ exports.createPost = catchAsync(async (req, res, next) => {
   const post = await Post.create({
     title: req.body.title,
     body: req.body.body,
+    keywords: req.body.keywords,
     imageCover: req.file.path,
     user: req.user.id,
   });

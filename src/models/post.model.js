@@ -8,6 +8,11 @@ const postSchema = new mongoose.Schema(
       required: [true, 'Please provide a blog title'],
       trim: true,
     },
+    keywords: {
+      type: String,
+      required: [true, 'Please provide a blog keywords'],
+      trim: true,
+    },
     body: {
       type: String,
       required: [true, 'Please provide a body for your blog'],
