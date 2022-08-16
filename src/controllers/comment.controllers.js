@@ -16,7 +16,7 @@ exports.createComment = catchAsync(async (req, res, next) => {
     post: req.params.postId,
   });
 
-  await comment.save();
+  comment = await comment.save();
 
   res.status(201).json({
     status: 'success',
