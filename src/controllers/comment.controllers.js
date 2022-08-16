@@ -10,7 +10,13 @@ exports.setPostUserIds = (req, res, next) => {
 };
 
 exports.createComment = catchAsync(async (req, res, next) => {
-  const comment = await Comment.create(req.body);
+  let comment = new Comment({
+    text: req.body.text,
+    user: req.user._id,
+    post: req.params.postId,
+  });
+
+  await comment.save();
 
   res.status(201).json({
     status: 'success',

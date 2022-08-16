@@ -5,15 +5,12 @@ const commentController = require('../controllers/comment.controllers');
 
 const router = express.Router({ mergeParams: true });
 
-router
-  .route('/')
-  .get(commentController.getAllComments)
-  .post(
-    authController.protect,
-    authController.restrictTo('user'),
-    commentController.setPostUserIds,
-    commentController.createComment
-  );
+router.route('/').get(commentController.getAllComments).post(
+  authController.protect,
+  authController.restrictTo('user', 'admin'),
+  // commentController.setPostUserIds,
+  commentController.createComment
+);
 
 router
   .route('/:id')
