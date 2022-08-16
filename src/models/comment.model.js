@@ -4,7 +4,7 @@ const commentSchema = new mongoose.Schema(
   {
     text: {
       type: String,
-      required: [true, 'Please comment should include a text'],
+      // required: [true, 'Please comment should include a text'],
     },
     user: {
       type: mongoose.Schema.ObjectId,
