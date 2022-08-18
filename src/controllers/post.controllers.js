@@ -63,9 +63,9 @@ exports.getPost = catchAsync(async (req, res, next) => {
 });
 
 exports.updatePost = catchAsync(async (req, res, next) => {
-  const filteredBody = filteredObj(req.body, 'title', 'body', 'imageCover');
+  // const filteredBody = filteredObj(req.body, 'title', 'body', 'imageCover');
 
-  const post = await Post.findByIdAndUpdate(req.params.id, filteredBody, {
+  const post = await Post.findByIdAndUpdate(req.params.id, req.body, {
     runValidators: true,
     new: true,
   });
